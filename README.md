@@ -7,6 +7,36 @@
 - [Development Version](http://bestiejs.github.com/json3/lib/json3.js) *(36.5 KB; uncompressed with comments)*
 - [Production Version](http://bestiejs.github.com/json3/lib/json3.min.js) *(3.0 KB; compressed and `gzip`-ped)*
 
+## Kanso package 
+
+This is a simple wrapper that loads JSON3 into a [kanso](http://kan.so) application.
+
+### Usage 
+
+#### Web Browsers
+
+    <script type="text/javascript" src="modules.js"></script>\
+    <script>
+      var JSON3 = require("json3");
+      JSON3.stringify({"Hello": 123});
+      // => '{"Hello":123}'
+      JSON3.parse("[[1, 2, 3], 1, 2, 3, 4]", function (key, value) {
+        if (typeof value == "number") {
+          value = value % 2 ? "Odd" : "Even";
+        }
+        return value;
+      });
+      // => [["Odd", "Even", "Odd"], "Odd", "Even", "Odd", "Even"]
+    </script>
+
+#### Kanso modules
+
+    var JSON3 = require("json3");
+    JSON3.parse("[1, 2, 3]");
+    // => [1, 2, 3]
+
+## Original documentation
+
 [JSON](http://json.org/) is a language-independent data interchange format based on a loose subset of the JavaScript grammar. Originally popularized by [Douglas Crockford](http://www.crockford.com/), the format was standardized in the [fifth edition](http://es5.github.com/) of the ECMAScript specification. The 5.1 edition, ratified in June 2011, incorporates several modifications to the grammar pertaining to the serialization of dates.
 
 JSON 3 exposes two functions: `stringify()` for [serializing](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/JSON/stringify) a JavaScript value to JSON, and `parse()` for [producing](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/JSON/parse) a JavaScript value from a JSON source string. It is a **drop-in replacement** for [JSON 2](http://json.org/js). The functions behave exactly as described in the ECMAScript spec, **except** for the date serialization discrepancy noted below.
